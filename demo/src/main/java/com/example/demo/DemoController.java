@@ -1,6 +1,9 @@
 package com.example.demo;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.member.dto.MemberJoinDTO;
+import com.example.demo.member.entity.Member;
 import com.example.demo.member.service.MemberService;
 
 @Controller
@@ -36,11 +40,13 @@ public class DemoController {
 	}
 	
 	
+	/*
 	@GetMapping("/member/read/{idx}")
 	@ResponseBody
 	public Integer read(@PathVariable("idx") Integer idx ) {
 		return idx;
 	}
+	*/
 	
 	
 	@GetMapping("/member/read/{idx}/{id}")
@@ -76,4 +82,40 @@ public class DemoController {
 	
 	
 	@GetMapping("/member/read/{idx}")
+	public ModelAndView read(@PathVariable("idx") Integer idx) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		try {
+			Member member = memberService.read(idx);
+			
+			mav.addObject("member", member);
+			mav.setViewName("member/read");
+		}
+		catch(NoSuchElementException ex) {
+			mav.setStatus(HttpStatus.UNPROCESSABLE_ENTITY);
+			mav.addObject("msg", "요청한 엔티티 정보가 없습니다.");
+			mav.setViewName("member/error");
+		}
+		
+		return mav;
+	}
+	
+	
+	@GetMapping("/member/update/{idx}")
+	public ModelAndView updateUi(@PathVariable("idx") Integer idx) {
+		
+		ModelAndView mav = new ModelAndView();
+		
+		try {
+			memberService.updateUi(idx);
+		}
+		catch(NoSuchElementException ex) {
+			mav.setStatus(HttpStatus.UNPROCESSABLE_ENTITY);
+			mav.addObject("msg", "요청한 엔티티 정보가 없습니다.");
+			mav.setViewName("member/error");
+		}
+		
+		return mav;
+	}
 }

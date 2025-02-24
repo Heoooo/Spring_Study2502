@@ -1,5 +1,7 @@
 package com.example.demo.member.service;
 
+import java.util.NoSuchElementException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,7 @@ public class MemberService {
 	@Autowired
 	private MemberRepository memberRepository;
 		
+	
 	public Integer insert(MemberJoinDTO memberJoinDTO) {
 		
 		Member member = new Member();
@@ -25,5 +28,19 @@ public class MemberService {
 		return member.getIdx();
 	}
 	
-
+	
+	public Member read(Integer idx) throws NoSuchElementException{
+		
+		Member member = memberRepository.findById(idx).orElseThrow();
+		
+		return member;
+	}
+	
+	
+	public MemberUpdateUiDTO updateUi(Integer idx) throws NoSuchElementException {
+		
+		Member member = memberRepository.findById(idx).orElseThrow();
+		
+		return MemberUpdateUiDTO.makeMember(member);
+	}
 }

@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Member Read</title>
+	</head>
+	<body>
+		<h2>Member Read</h2>
+		<hr>
+			<p>인덱스 : <span th:text="${member.idx}"></span></p>
+			<p>아이디 : <span th:text="${member.id}"></span></p>
+			<p>비밀번호 : <span th:text="${member.pw}"></span></p>
+		<hr>
+			
+	</body>
 </html>
