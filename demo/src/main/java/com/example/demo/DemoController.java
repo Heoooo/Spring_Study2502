@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.member.dto.MemberJoinDTO;
+import com.example.demo.member.dto.MemberUpdateDTO;
+import com.example.demo.member.dto.MemberUpdateUiDTO;
 import com.example.demo.member.entity.Member;
 import com.example.demo.member.service.MemberService;
 
@@ -108,13 +110,29 @@ public class DemoController {
 		ModelAndView mav = new ModelAndView();
 		
 		try {
-			memberService.updateUi(idx);
+			MemberUpdateUiDTO memberUpdateUiDTO = memberService.updateUi(idx);
+			mav.addObject("memberUpdateUiDTO", memberUpdateUiDTO);
+			mav.setViewName("member/memberUpdate");
 		}
 		catch(NoSuchElementException ex) {
 			mav.setStatus(HttpStatus.UNPROCESSABLE_ENTITY);
 			mav.addObject("msg", "요청한 엔티티 정보가 없습니다.");
 			mav.setViewName("member/error");
 		}
+		
+		return mav;
+	}
+	
+	
+	@PostMapping("/member/update/{idx}")
+	@ResponseBody
+	public ModelAndView update(MemberUpdateDTO memberUpdateDTO) {
+		
+		memberService.update(memberUpdateDTO);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(String.format("redirect:/member/read/%s", memberUpdateDTO.getIdx()));
+		
 		
 		return mav;
 	}

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.member.dto.MemberJoinDTO;
+import com.example.demo.member.dto.MemberUpdateDTO;
+import com.example.demo.member.dto.MemberUpdateUiDTO;
 import com.example.demo.member.entity.Member;
 import com.example.demo.member.entity.MemberRepository;
 
@@ -42,5 +44,15 @@ public class MemberService {
 		Member member = memberRepository.findById(idx).orElseThrow();
 		
 		return MemberUpdateUiDTO.makeMember(member);
+	}
+	
+	
+	public void update(MemberUpdateDTO memberUpdateDTO) throws NoSuchElementException{
+		
+		Member member = memberRepository.findById(memberUpdateDTO.getIdx()).orElseThrow();
+		
+		member = memberUpdateDTO.change(member);
+		
+		memberRepository.save(member);
 	}
 }

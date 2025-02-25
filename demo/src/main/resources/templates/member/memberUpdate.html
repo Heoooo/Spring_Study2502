@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Member Update</title>
+		<style>
+			ul > li {line-height:3rem; list-style:none;}
+			.input1 {
+				width: 300px;
+				height: 40px;
+				background: #f0f0f0;
+				border: 1px solid #666;
+				padding-left: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Member Update</h2>
+		<form th:object="${memberUpdateUiDTO}" th:action="@{/member/update/{idx}(idx=*{idx})}" method="POST" autocomplete="off">
+			<hr>
+			<ul>
+				<li><input class="input1" type="text" name="id" th:value="*{id}" maxlength=16 required></li>
+				<li><input class="input1" type="password" name="pw" th:value="*{pw}" maxlength=16 required></li>
+				<!--
+				<li><input class="input1" type="text" name="name" placeholder="이름 입력" maxlength=16 required></li>
+				<li><input class="input1" type="text" name="email" placeholder="이메일 입력" maxlength=60 required></li>
+				<li><input class="input1" type="text" name="phone" placeholder="전화번호 입력" maxlength=16 required></li>
+				-->
+			</ul>
+			<hr>
+			<input type="submit" value="수정">
+
+		</form>
+	</body>
+</html>
