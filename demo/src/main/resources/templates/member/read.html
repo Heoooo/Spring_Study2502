@@ -11,6 +11,9 @@
 			<p>아이디 : <span th:text="${member.id}"></span></p>
 			<p>비밀번호 : <span th:text="${member.pw}"></span></p>
 		<hr>
+		<button onclick="location.href='/member/memberJoin';">회원 가입</button>
+		<button th:onclick="@{|location.href='/member/update/${member.idx}'|}">회원 수정</button>
+		<button th:onclick="@{|location.href='/member/delete/${member.idx}'|}">회원 삭제</button>
 			
 	</body>
 </html>

@@ -125,7 +125,6 @@ public class DemoController {
 	
 	
 	@PostMapping("/member/update/{idx}")
-	@ResponseBody
 	public ModelAndView update(MemberUpdateDTO memberUpdateDTO) {
 		
 		memberService.update(memberUpdateDTO);
@@ -136,4 +135,36 @@ public class DemoController {
 		
 		return mav;
 	}
+	
+	/*
+	@GetMapping("/member/delete/{idx}")
+	public String delete(@PathVariable("idx") Integer idx) {
+		
+		String res = memberService.delete(idx);
+		
+		return "redirect:" + res;
+	}
+	*/
+	
+	
+	@GetMapping("/member/delete/{idx}")
+	public String deleteUi(Model model, @PathVariable("idx") Integer idx) {
+		
+		model.addAttribute("idx", idx);
+		
+		return "member/delete";
+	}
+	
+	
+//	@GetMapping("/member/delete-fail/{idx}")
+//	public String deleteFail(@PathVariable("idx") Integer idx) {
+//		
+//		return "member/delete-fail";
+//	}
+//	
+//	@GetMapping("/member/delete-success/{idx}")
+//	public String successFail(@PathVariable("idx") Integer idx) {
+//		
+//		return "member/delete-success";
+//	}
 }

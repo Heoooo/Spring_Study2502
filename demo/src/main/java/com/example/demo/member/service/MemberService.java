@@ -55,4 +55,14 @@ public class MemberService {
 		
 		memberRepository.save(member);
 	}
+	
+	
+	public String delete(Integer idx) throws NoSuchElementException{
+		
+		Member member = memberRepository.findById(idx).orElseThrow();
+		
+		memberRepository.delete(member);
+		
+		return "/member/memberJoin";
+	}
 }
