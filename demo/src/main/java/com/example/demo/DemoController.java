@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -156,15 +157,26 @@ public class DemoController {
 	}
 	
 	
-//	@GetMapping("/member/delete-fail/{idx}")
-//	public String deleteFail(@PathVariable("idx") Integer idx) {
-//		
-//		return "member/delete-fail";
-//	}
-//	
-//	@GetMapping("/member/delete-success/{idx}")
-//	public String successFail(@PathVariable("idx") Integer idx) {
-//		
-//		return "member/delete-success";
-//	}
+	@PostMapping("/member/delete/{idx}")
+	public String delete(@PathVariable("idx") Integer idx, @RequestParam("pw") Integer userPw) {
+		
+		String res = memberService.delete(idx, userPw);
+		
+		return "redirect:" + res + "/" + idx;
+	}
+	
+	
+	@GetMapping("/member/delete-fail/{idx}")
+	public String deleteFail(Model model, @PathVariable("idx") Integer idx) {
+		
+		model.addAttribute("idx", idx);
+		
+		return "member/delete-fail";
+	}
+	
+	@GetMapping("/member/delete-success/{idx}")
+	public String successFail(@PathVariable("idx") Integer idx) {
+		
+		return "member/delete-success";
+	}
 }

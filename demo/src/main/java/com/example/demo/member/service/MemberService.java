@@ -56,7 +56,7 @@ public class MemberService {
 		memberRepository.save(member);
 	}
 	
-	
+	/*
 	public String delete(Integer idx) throws NoSuchElementException{
 		
 		Member member = memberRepository.findById(idx).orElseThrow();
@@ -64,5 +64,22 @@ public class MemberService {
 		memberRepository.delete(member);
 		
 		return "/member/memberJoin";
+	}
+	*/
+	
+	
+	public String delete(Integer idx, Integer userPw) throws NoSuchElementException {
+		
+		Member member = memberRepository.findById(idx).orElseThrow();
+		
+		if (member.getPw().equals(userPw)) {
+			System.out.println("비밀번호가 맞습니다.");
+			memberRepository.delete(member);
+			return "/member/delete-success";
+		}
+		else {
+			System.out.println("비밀번호가 틀립니다.");
+			return "/member/delete-fail";
+		}
 	}
 }

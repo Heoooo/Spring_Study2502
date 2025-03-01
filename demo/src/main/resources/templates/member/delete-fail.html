@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
+<html xlmns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Delete Fail</title>
+	</head>
+	<body>
+		<h2>Delete Fail</h2>
+		<hr>
+			<p>Message : <span th:text="${idx}" style="font-weight: 600"></span>번 레코드에 대한 비밀번호가 틀립니다.</p>
+		<hr>
+		<button th:onclick="@{|location.href='/member/delete/${idx}'|}">다시 비밀번호 입력하기 (다시 삭제하기)</button>
+		
+	</body>
 </html>

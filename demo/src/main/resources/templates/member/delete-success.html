@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
+<html xlmns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Delete Success</title>
+	</head>
+	<body>
+		<h2>Delete Success</h2>
+		<hr>
+			<p>Message : <span th:text="${idx}" style="font-weight: 600"></span>번 레코드가 성공적으로 삭제되었습니다.</p>
+		<hr>
+		<button th:onclick="@{|location.href='/member/read/${idx}'|}">다시 보기</button>
+		
+	</body>
 </html>
