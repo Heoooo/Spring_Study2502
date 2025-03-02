@@ -179,4 +179,12 @@ public class DemoController {
 		
 		return "member/delete-success";
 	}
+	
+	
+	@GetMapping("/member/memberList")
+	public String memberList(@RequestParam(value="page", defaultValue="0") Integer page) {
+		
+		//MemberService >> memberList() 호출 => page 넣으면서 호출
+		memberService.memberList(page);
+	}
 }
