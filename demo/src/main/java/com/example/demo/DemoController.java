@@ -3,6 +3,7 @@ package com.example.demo;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -182,9 +183,13 @@ public class DemoController {
 	
 	
 	@GetMapping("/member/memberList")
-	public String memberList(@RequestParam(value="page", defaultValue="0") Integer page) {
+	public String memberList(Model model, @RequestParam(value="page", defaultValue="0") Integer page) {
 		
 		//MemberService >> memberList() 호출 => page 넣으면서 호출
-		memberService.memberList(page);
+		Page<Member> paging = memberService.memberList(page);
+		
+		model.addAttribute("paging", paging);
+		
+		return "member/memberList";
 	}
 }
