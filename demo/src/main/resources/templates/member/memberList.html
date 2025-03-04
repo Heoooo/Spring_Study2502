@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Member List</title>
+	</head>
+	<body>
+		<h2>Member List</h2>
+		<hr>
+		<table width="600" border=1>
+			<tr>
+				<td>번호</td>
+				<td>아이디</td>
+				<td>비밀번호</td>
+			</tr>
+			<tr th:each="member: ${paging}">
+				<td th:text="${member.idx}"></td>
+				<td th:text="${member.id}"></td>
+				<td th:text="${member.pw}"></td>
+			</tr>
+		</table>
+		<hr>
+		<!-- 페이징 처리 시작 -->
+		<!--
+			페이징 관련 필수 속성들
+			#numbers.sequence(start, end): 시작~끝 정해진 범위만큼 반복하여 숫자 생성
+			paging.isEmpty(): 페이지가 비었는지 체크 true or false
+			paging.number: 현재 페이지 번호
+			paging.totalPages: 전체 페이지 수
+			paging.totalElements: 전체 레코드 수(글 개수) 
+			paging.size: 특정 페이지의 레코드 수
+			paging:hasPrevious: 이전 페이지 있는지 체크
+			paging.hasNext: 다음 페이지 있는지 체크
+		 -->
+
+		<div th:if="${!paging.isEmpty()}">
+			<ul>
+				<li>Prev</li>
+				<li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}">
+					<a th:href="@{|?page=${page}|}" th:text="${page+1}"></a>
+				</li>
+				<li>Next</li>
+			</ul>
+		</div>
+		<!-- 페이징 처리 끝 -->
+		<hr>
+		<button onclick="location.href='/member/memberJoin';">회원 가입</button>
+	</body>
+</html>
