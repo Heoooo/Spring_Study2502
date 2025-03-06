@@ -25,6 +25,14 @@
 			li:first-child, li:last-child {
 				background-color: #f0f0f0;
 			}
+			.disabled {
+				pointer-events: none;
+				opacity: .3;
+			}
+			.active {
+				background-color: pink;
+				color: white;
+			}
 		</style>
 	</head>
 	<body>
@@ -58,16 +66,17 @@
 
 		<div th:if="${!paging.isEmpty()}">
 			<ul>
-				<li th:if="${paging.hasPrevious}">
-					<a th:href="@{|?page=${paging.number-1}|}">Prev</a>
+				<li th:classappend="${!paging.hasPrevious} ? 'disabled'">
+					<a th:href="@{|?page=${paging.number}|}">Prev</a>
 				</li>
-				<li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
-					th:if="${page >= paging.number-3 and page <= paging.number+3}"
+				<li th:each="page: ${#numbers.sequence(1, paging.totalPages)}"
+					th:if="${page >= paging.number-2 and page <= paging.number+4}"
+					th:classappend="${page-1 == paging.number} ? 'active'"
 				>
-					<a th:href="@{|?page=${page}|}" th:text="${page+1}"></a>
+					<a th:href="@{|?page=${page}|}" th:text="${page}"></a>
 				</li>
-				<li th:if="${paging.hasNext}">
-					<a th:href="@{|?page=${paging.number+1}|}">Next</a>
+				<li th:classappend="${!paging.hasNext} ? 'disabled'">
+					<a th:href="@{|?page=${paging.number+2}|}">Next</a>
 				</li>
 			</ul>
 		</div>

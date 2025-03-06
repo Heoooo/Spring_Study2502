@@ -90,6 +90,13 @@ public class MemberService {
 	//DB:List
 	public Page<Member> memberList(Integer page) {
 		
+		//페이지 번호가 없다면
+		if (page == 0) {
+			page = 0;
+		} else {
+			page -= 1;
+		}
+		
 		Pageable pageable = null;
 		
 		pageable = PageRequest.of(page, 2);
