@@ -35,11 +35,17 @@
 
 		<div th:if="${!paging.isEmpty()}">
 			<ul>
-				<li>Prev</li>
-				<li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}">
+				<li th:if="${paging.hasPrevious}">
+					<a th:href="@{|?page=${paging.number-1}|}">Prev</a>
+				</li>
+				<li th:each="page: ${#numbers.sequence(0, paging.totalPages-1)}"
+					th:if="${page >= paging.number-3 and page <= paging.number+3}"
+				>
 					<a th:href="@{|?page=${page}|}" th:text="${page+1}"></a>
 				</li>
-				<li>Next</li>
+				<li th:if="${paging.hasNext}">
+					<a th:href="@{|?page=${paging.number+1}|}">Next</a>
+				</li>
 			</ul>
 		</div>
 		<!-- 페이징 처리 끝 -->

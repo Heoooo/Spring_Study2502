@@ -92,7 +92,7 @@ public class MemberService {
 		
 		Pageable pageable = null;
 		
-		pageable = PageRequest.of(page, 5);
+		pageable = PageRequest.of(page, 2);
 		
 		return memberRepository.findAll(pageable);
 	}
