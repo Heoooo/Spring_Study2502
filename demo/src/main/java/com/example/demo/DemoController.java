@@ -29,7 +29,7 @@ public class DemoController {
 	//부트스트랩 페이지 요청
 	@GetMapping("/member/memberList_bs")
 	public String memberList_bs() {
-		return "memebr/memberList_bs";
+		return "member/memberList_bs";
 	}
 	
 	
