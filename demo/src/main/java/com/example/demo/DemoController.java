@@ -41,12 +41,12 @@ public class DemoController {
 	
 	
 	@PostMapping("/member/memberJoinOk")
-	@ResponseBody
 	public String insert(MemberJoinDTO memberJoinDTO) {
 		
 		Integer idx = memberService.insert(memberJoinDTO);
 		
-		return String.format("Member idx => %s", idx);
+		//return String.format("Member idx => %s", idx);
+		return "redirect:/member/memberList";
 	}
 	
 	
