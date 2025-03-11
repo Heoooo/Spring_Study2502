@@ -11,4 +11,8 @@ public interface MemberRepository extends JpaRepository<Member, Integer> {
 	//Page: 페이징 처리를 위한 기본 클래스
 	//Pageable: 인터페이스(페이징 관련)
 	//PageRequest: 구현체(구현 클래스)->of()사용
+	
+	//Email Check
+	boolean existsByEmail(String email);
+
 }

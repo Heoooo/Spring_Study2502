@@ -41,7 +41,14 @@ public class DemoController {
 	
 	
 	@PostMapping("/member/memberJoinOk")
-	public String insert(MemberJoinDTO memberJoinDTO) {
+	public String insert(MemberJoinDTO memberJoinDTO, Model model) {
+		
+		boolean emailCheckRes = memberService.checkEmailDuplication(memberJoinDTO.getEmail());
+		
+		if (emailCheckRes) {
+			model.addAttribute("msg", "Email 중복 에러: 입력하신 이메일은 이미 가입되어 있습니다.");
+			return "member/error";
+		}
 		
 		Integer idx = memberService.insert(memberJoinDTO);
 		

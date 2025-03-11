@@ -109,4 +109,11 @@ public class MemberService {
 		
 		return memberRepository.findAll(pageable);
 	}
+	
+	//DB:Email Check
+	public boolean checkEmailDuplication(String email) {
+		
+		boolean emailCheckValue = memberRepository.existsByEmail(email);
+		return emailCheckValue;
+	}
 }
