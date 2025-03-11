@@ -71,9 +71,21 @@
 		      <th scope="row" th:text="${member.idx}"></th>
 		      <td th:text="${member.id}"></td>
 		      <td th:text="${member.pw}"></td>
-		      <td>abc@gmail.com</td>
-		      <td><button type="button" class="btn btn-outline-success btn-sm">수정</button></td>
-		      <td><button type="button" class="btn btn-outline-danger btn-sm">삭제</button></td>
+		      <td th:text="${member.email}"></td>
+		      <td>
+		      	<button
+		      		type="button"
+		      		class="btn btn-outline-success btn-sm"
+		      		th:onclick="'location.href=\'/member/update/'+${member.idx}+'\';'"
+		      		>수정</button>
+		      </td>
+		      <td>
+		      	<button
+		      		type="button"
+		      		class="btn btn-outline-danger btn-sm"
+		      		th:onclick="'location.href=\'/member/delete/'+${member.idx}+'\';'"
+		      		>삭제</button>
+		      </td>
 		    </tr>
 		  </tbody>
 		</table>

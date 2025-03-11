@@ -29,6 +29,7 @@ public class MemberService {
 		
 		member.setId(memberJoinDTO.getId());
 		member.setPw(memberJoinDTO.getPw());
+		member.setEmail(memberJoinDTO.getEmail());
 		
 		memberRepository.save(member);
 		
