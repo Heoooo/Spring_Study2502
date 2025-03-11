@@ -3,7 +3,7 @@ package com.example.demo.member.dto;
 public class MemberJoinDTO {
 	
 	private String id;
-	private Integer pw;
+	private String pw;
 	
 	public String getId() {
 		return id;
@@ -11,10 +11,10 @@ public class MemberJoinDTO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Integer getPw() {
+	public String getPw() {
 		return pw;
 	}
-	public void setPw(Integer pw) {
+	public void setPw(String pw) {
 		this.pw = pw;
 	}
 

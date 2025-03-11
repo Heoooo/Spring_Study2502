@@ -17,7 +17,10 @@ public class Member {
 	private String id;
 	
 	@Column
-	private Integer pw;
+	private String pw;
+	
+	@Column(unique = true)
+	private String email;
 	
 	
 	public Integer getIdx() {
@@ -32,11 +35,17 @@ public class Member {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Integer getPw() {
+	public String getPw() {
 		return pw;
 	}
-	public void setPw(Integer pw) {
+	public void setPw(String pw) {
 		this.pw = pw;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	

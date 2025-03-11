@@ -80,7 +80,7 @@
   	</div>
   	
   	<!-- Pagination -->
-  	<div class="container">
+  	<div class="container" th:if="${!paging.isEmpty()}">
   		<ul class="pagination justify-content-center">
   		
   			<li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">

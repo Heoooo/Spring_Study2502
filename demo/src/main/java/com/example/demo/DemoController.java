@@ -165,7 +165,7 @@ public class DemoController {
 	
 	
 	@PostMapping("/member/delete/{idx}")
-	public String delete(@PathVariable("idx") Integer idx, @RequestParam("pw") Integer userPw) {
+	public String delete(@PathVariable("idx") Integer idx, @RequestParam("pw") String userPw) {
 		
 		String res = memberService.delete(idx, userPw);
 		

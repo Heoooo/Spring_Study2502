@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.member.dto.MemberJoinDTO;
@@ -71,7 +73,7 @@ public class MemberService {
 	*/
 	
 	
-	public String delete(Integer idx, Integer userPw) throws NoSuchElementException {
+	public String delete(Integer idx, String userPw) throws NoSuchElementException {
 		
 		Member member = memberRepository.findById(idx).orElseThrow();
 		
@@ -99,7 +101,10 @@ public class MemberService {
 		
 		Pageable pageable = null;
 		
-		pageable = PageRequest.of(page, 2);
+		//정렬 기준 적용하기
+		Sort sort = Sort.by(Order.desc("idx"));
+		
+		pageable = PageRequest.of(page, 2, sort);
 		
 		return memberRepository.findAll(pageable);
 	}

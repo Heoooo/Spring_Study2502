@@ -6,7 +6,8 @@ public class MemberUpdateUiDTO {
 	
 	private Integer idx;
 	private String id;
-	private Integer pw;
+	private String pw;
+	
 	
 	
 	public MemberUpdateUiDTO fromMember(Member member) {
@@ -39,10 +40,10 @@ public class MemberUpdateUiDTO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Integer getPw() {
+	public String getPw() {
 		return pw;
 	}
-	public void setPw(Integer pw) {
+	public void setPw(String pw) {
 		this.pw = pw;
 	}
 	
